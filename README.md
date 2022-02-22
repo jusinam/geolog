@@ -3,4 +3,4 @@ Geologing lat and long
 
 #### License
 MIT
-&copy;2022 Evans Nyambane
+&copy;2022 Evans Onchagwa
